@@ -19,7 +19,7 @@ void loop() {
 
 void idle_run(){
   if (millis() > timeOld){
-     digitalWrite(13, digitalRead(13));
+     digitalWrite(13, !digitalRead(13));
      timeOld = millis() + 1000UL;
      wdt_reset();
   }
