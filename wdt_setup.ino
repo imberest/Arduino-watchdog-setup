@@ -2,7 +2,7 @@
 
 //Time saved to compare
 unsigned long timeOld = 0;
-
+unsigned long interval = 1000;
 void setup() {
   Serial.begin(9600);
   Serial.println("Booting up...");
@@ -18,9 +18,9 @@ void loop() {
 }
 
 void idle_run(){
-  if (millis() > timeOld){
+  if (millis() - timeOld >= interval){ // check if time expired, also deals with roll over of millis()
      digitalWrite(13, !digitalRead(13));
-     timeOld = millis() + 1000UL;
+     timeOld = millis();
      wdt_reset();
   }
 }
